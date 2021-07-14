@@ -9,19 +9,7 @@ import { BrowserView, MobileView, isMobile } from "react-device-detect"
 import Header from "./header"
 import "./layout.css"
 
-const container = {
-  margin: `0 auto`,
-}
-
-const containerStyle = isMobile
-  ? { ...container, maxWidth: `${window.screen.width}px`}
-  : { ...container, maxWidth: "960px", width: "960px" }
-
-const containerStyleMain = {
-  ...containerStyle,
-  padding: `0 1.0875rem 1.45rem`,
-  flex: 1,
-}
+const width = 960
 
 const footerStyle = {
   fontFamily: `'Press Start 2P'`,
@@ -45,6 +33,20 @@ const Layout = ({ children, source, showNavigation }) => {
       }
     }
   `)
+
+  const container = {
+    margin: `0 auto`,
+  }
+
+  const containerStyle = isMobile
+    ? { ...container, maxWidth: `${window.screen.width}px` }
+    : { ...container, maxWidth: `${width}px`, width: `${width}px` }
+
+  const containerStyleMain = {
+    ...containerStyle,
+    padding: `0 1.0875rem 1.45rem`,
+    flex: 1,
+  }
 
   return (
     <>
