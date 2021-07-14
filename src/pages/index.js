@@ -1,22 +1,50 @@
 import React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
+import BlogLinks from "../components/blogLinks"
+import Header from "../components/pageTitle"
+import dinoPng from "../images/dinosaur.png"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+const IndexPage = ({ data }) => {
+  const posts = data.posts.edges
+  return (
+    <Layout showNavigation={true}>
+      <SEO title="Home" />
+      <Header header="Latest posts" img={dinoPng} />
+      <BlogLinks posts={posts} />
+    </Layout>
+  )
+}
+
+export const pageQuery = graphql`
+  query {
+    posts: allMdx(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      limit: 5
+    ) {
+      edges {
+        node {
+          excerpt(pruneLength: 320)
+          slug
+          frontmatter {
+            author
+            title
+            date
+            image {
+              childImageSharp {
+                fluid(maxWidth: 600) {
+                  ...GatsbyImageSharpFluid_tracedSVG
+                }
+              }
+            }
+          }
+          id
+        }
+      }
+    }
+  }
+`
 
 export default IndexPage

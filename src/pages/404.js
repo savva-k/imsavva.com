@@ -1,13 +1,24 @@
 import React from "react"
-
+import { Link } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Header from "../components/pageTitle"
 
 const NotFoundPage = () => (
-  <Layout>
+  <Layout showNavigation={true}>
     <SEO title="404: Not found" />
-    <h1>404: Not Found</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
+    <Header header="Ooops... 404!" />
+    <p>
+      Looks like there's no such page. Please use the links on the left to
+      navigate the site.
+    </p>
+    <p>
+      If you think it is an error, I would appreciate recieving a message from
+      you.
+    </p>
+    <p>
+      You can find my contacts <Link to="/about">here</Link>.
+    </p>
   </Layout>
 )
 
