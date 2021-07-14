@@ -14,7 +14,7 @@ The last thing I heard about this franchise is that we'll probably never see new
 
 In this short note, I've attached an introduction trailer as well as some basic gameplay.
 
-<iframe src="https://www.youtube.com/embed/BKRrpnxupfI" width="560" height="315" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+<iframe src="https://www.youtube.com/embed/BKRrpnxupfI" width="100%" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
 
 The story of the game starts when Professor Farnsworth brings good news to everyone, the team has a new delivery task to Amphibious 9. Nobody knows (cares?) that Professor is under Hypnotoad's control. When they arrive at the planet, Hypnotoad meets its love from a perpendicular universe and this meeting brakes the prophylactic membrane between universes. Fry holds Leela but the gravity is stronger, so Leela flies away to a perpendicular universe.
 

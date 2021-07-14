@@ -27,7 +27,7 @@ const imageContainerStyle = {
 const Blog = ({ data: { mdx }, pageContext: { tags }, location }) => {
   const image = mdx.frontmatter.image?.childImageSharp?.fluid
   return (
-    <Layout source={ location.state?.source } showNavigation={false}>
+    <Layout source={location.state?.source} showNavigation={false}>
       <SEO title={mdx.frontmatter.title} />
       <div style={imageContainerStyle}>
         {image ? (
@@ -36,13 +36,14 @@ const Blog = ({ data: { mdx }, pageContext: { tags }, location }) => {
           <NoImage title={mdx.frontmatter.title} />
         )}
       </div>
-
-      <h1 style={headerStyle}>{mdx.frontmatter.title}</h1>
-      <Tags tags={tags}/>
-      <MDXRenderer>{mdx.body}</MDXRenderer>
-      <Tags tags={tags}/>
-      <div style={{ marginTop: "5em", textAlign: "right" }}>
-        Posted on {mdx.frontmatter.date}
+      <div>
+        <h1 style={headerStyle}>{mdx.frontmatter.title}</h1>
+        <Tags tags={tags} />
+        <MDXRenderer>{mdx.body}</MDXRenderer>
+        <Tags tags={tags} />
+        <div style={{ marginTop: "5em", textAlign: "right" }}>
+          Posted on {mdx.frontmatter.date}
+        </div>
       </div>
     </Layout>
   )
