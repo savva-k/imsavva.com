@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Flex from "../components/layout/flex"
 import FlexColumn from "../components/layout/flexcolumn"
 import Navigation from "../components/navigation"
-import { BrowserView, MobileView, isMobile } from "react-device-detect"
+import { BrowserView, MobileView } from "react-device-detect"
 import Header from "./header"
 import "./layout.css"
 
@@ -34,18 +34,21 @@ const Layout = ({ children, source, showNavigation }) => {
     }
   `)
 
-  const container = {
+  const alignCenter = {
     margin: `0 auto`,
   }
 
-  const containerStyle = isMobile
-    ? { ...container, maxWidth: `${window.screen.width}px` }
-    : { ...container, maxWidth: `${width}px`, width: `${width}px` }
-
-  const containerStyleMain = {
-    ...containerStyle,
+  const containerStyleMobile = {
+    ...alignCenter,
+    fontFamily: "Helvetica",
     padding: `0 1.0875rem 1.45rem`,
     flex: 1,
+  }
+
+  const containerStyle = {
+    ...containerStyleMobile,
+    maxWidth: `${width}px`,
+    width: `${width}px`,
   }
 
   return (
@@ -54,9 +57,9 @@ const Layout = ({ children, source, showNavigation }) => {
         source={source}
         siteTitle={data.site.siteMetadata?.title || `Title`}
       />
-      <div style={containerStyleMain}>
-        <main style={{ fontFamily: "Helvetica" }}>
-          <BrowserView>
+      <BrowserView>
+        <div style={containerStyle}>
+          <main>
             {showNavigation ? (
               <Flex>
                 <FlexColumn width="25%">
@@ -67,21 +70,30 @@ const Layout = ({ children, source, showNavigation }) => {
             ) : (
               children
             )}
-          </BrowserView>
-          <MobileView>
+          </main>
+        </div>
+      </BrowserView>
+      <MobileView>
+        <div
+          style={{
+            ...containerStyleMobile,
+            maxWidth: `${window.screen.width}px`,
+          }}
+        >
+          <main>
             {showNavigation && (
               <div>
                 <Navigation />
               </div>
             )}
 
-            <div>{children}</div>
-          </MobileView>
-        </main>
-      </div>
+            {children}
+          </main>
+        </div>
+      </MobileView>
 
       <footer style={footerStyle}>
-        <div style={containerStyle}>Do I really need the footer?</div>
+        <div style={alignCenter}>Do I really need the footer?</div>
       </footer>
     </>
   )
