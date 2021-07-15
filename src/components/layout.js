@@ -74,12 +74,7 @@ const Layout = ({ children, source, showNavigation }) => {
         </div>
       </BrowserView>
       <MobileView>
-        <div
-          style={{
-            ...containerStyleMobile,
-            maxWidth: `${window.screen.width}px`,
-          }}
-        >
+        <div style={containerStyleMobile}>
           <main>
             {showNavigation && (
               <div>
