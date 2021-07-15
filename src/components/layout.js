@@ -52,6 +52,7 @@ const Layout = ({ children, source, showNavigation }) => {
   `)
 
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" })
+  console.log('Is tablet or mobile =' + isTabletOrMobile)
 
   return (
     <>
