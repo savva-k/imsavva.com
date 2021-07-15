@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import Flex from "../components/layout/flex"
 import FlexColumn from "../components/layout/flexcolumn"
 import Navigation from "../components/navigation"
-import { useMediaQuery } from "react-responsive"
+import { isMobile } from "react-device-detect"
 import Header from "./header"
 import "./layout.css"
 
@@ -51,8 +51,7 @@ const Layout = ({ children, source, showNavigation }) => {
     }
   `)
 
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1224px)" })
-  console.log('Is tablet or mobile =' + isTabletOrMobile)
+  console.log("Is mobile = " + isMobile)
 
   return (
     <>
@@ -60,7 +59,7 @@ const Layout = ({ children, source, showNavigation }) => {
         source={source}
         siteTitle={data.site.siteMetadata?.title || `Title`}
       />
-      {!isTabletOrMobile && (
+      {!isMobile && (
         <div style={containerStyle}>
           <main>
             {showNavigation ? (
@@ -76,7 +75,7 @@ const Layout = ({ children, source, showNavigation }) => {
           </main>
         </div>
       )}
-      {isTabletOrMobile && (
+      {isMobile && (
         <div style={containerStyleMobile}>
           <main>
             {showNavigation && (
