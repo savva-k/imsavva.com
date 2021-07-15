@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -51,7 +51,11 @@ const Layout = ({ children, source, showNavigation }) => {
     }
   `)
 
-  console.log("Is mobile = " + isMobile)
+  const [isMobileState, setMobileState] = useState(false)
+
+  useEffect(() => {
+    setMobileState(isMobile)
+  }, [])
 
   return (
     <>
@@ -59,7 +63,7 @@ const Layout = ({ children, source, showNavigation }) => {
         source={source}
         siteTitle={data.site.siteMetadata?.title || `Title`}
       />
-      {!isMobile && (
+      {!isMobileState && (
         <div style={containerStyle}>
           <main>
             {showNavigation ? (
@@ -75,7 +79,7 @@ const Layout = ({ children, source, showNavigation }) => {
           </main>
         </div>
       )}
-      {isMobile && (
+      {isMobileState && (
         <div style={containerStyleMobile}>
           <main>
             {showNavigation && (
