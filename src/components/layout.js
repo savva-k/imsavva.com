@@ -51,7 +51,7 @@ const Layout = ({ children, source, showNavigation }) => {
     }
   `)
 
-  const [isMobileState, setMobileState] = useState(false)
+  const [isMobileState, setMobileState] = useState(isMobile)
 
   useEffect(() => {
     setMobileState(isMobile)
