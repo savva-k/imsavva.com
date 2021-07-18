@@ -1,4 +1,5 @@
 import React from "react"
+import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import Img from "gatsby-image"
 import { graphql } from "gatsby"
@@ -7,6 +8,7 @@ import NoImage from "../components/noImage"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Tags from "../components/tags"
+import CodeBlock from "../components/CodeBlock"
 
 const headerStyle = {
   fontFamily: `'Press Start 2P'`,
@@ -20,6 +22,11 @@ const headerStyle = {
 const imageContainerStyle = {
   backgroundColor: "#F4E59E",
   padding: "1em",
+}
+
+const components = {
+  pre: props => <div {...props} />,
+  code: CodeBlock,
 }
 
 const Blog = ({ data: { mdx }, pageContext: { tags }, location }) => {
@@ -37,7 +44,9 @@ const Blog = ({ data: { mdx }, pageContext: { tags }, location }) => {
       <div>
         <h1 style={headerStyle}>{mdx.frontmatter.title}</h1>
         <Tags tags={tags} />
-        <MDXRenderer>{mdx.body}</MDXRenderer>
+        <MDXProvider components={components}>
+          <MDXRenderer>{mdx.body}</MDXRenderer>
+        </MDXProvider>
         <Tags tags={tags} />
         <div style={{ marginTop: "5em", textAlign: "right" }}>
           Posted on {mdx.frontmatter.date}

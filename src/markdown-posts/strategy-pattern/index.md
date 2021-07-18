@@ -14,7 +14,7 @@ So the first pattern I want to describe is **Strategy**. It allows to choose the
 
 Let's see an example. Supposing we have a class **Order**, which has **getTotal()** method, that returns total cost of **Items** in this order:
 
-```
+```java
 public int getTotal() {
     int total = 0;
 
@@ -30,7 +30,7 @@ Very simple, isn't it? But what if we want to change the price depending on some
 
 First, let's create the PriceStrategy interface. The only method it has receives a price of an item, changes it depending on pricing strategy and returns it:
 
-```
+```java
 package patterns.strategy;
 
 public interface PriceStrategy {
@@ -47,7 +47,7 @@ public interface PriceStrategy {
 
 Now let's implement this interface. Normally we don't want to change the price, thus the NormalPriceStrategy class would look like:
 
-```
+```java
 package patterns.strategy;
 
 public class NormalPriceStrategy implements PriceStrategy {
@@ -62,7 +62,7 @@ public class NormalPriceStrategy implements PriceStrategy {
 
 Sometimes shops offer us 50% discount, so we need to provide the same pricing policy in our application:
 
-```
+```java
 package patterns.strategy;
 
 public class HalfPriceStrategy implements PriceStrategy {
@@ -77,7 +77,7 @@ public class HalfPriceStrategy implements PriceStrategy {
 
 And why not to give our customers additional 10% discount on Mondays? Let's do it:
 
-```
+```java
 package patterns.strategy;
 
 import java.util.Calendar;
@@ -102,7 +102,7 @@ public class MondayTenPercentDiscountPriceStrategy implements PriceStrategy {
 
 Now we have 3 different pricing strategies. All we need is to use one of them in the Order class. Let's define a **priceStrategy** property of type **PriceStrategy**, create getter and setter methods, and, optionally, create a constructor which receives some strategy. The main idea is to use strategy's **calculatePrice()** method while calculating total order cost:
 
-```
+```java
 package patterns.strategy;
 
 import java.util.List;
@@ -151,19 +151,19 @@ public class Order {
 
 Notice that we've changed this line
 
-```
+```java
 total += item.getPrice();
 ```
 
 To this one:
 
-```
+```java
 total += strategy.calculatePrice(item.getPrice());
 ```
 
 Now let's write a simple main method to run the application and try to use all of our strategies:
 
-```
+```java
 package patterns.strategy;
 
 import java.util.ArrayList;
@@ -199,12 +199,10 @@ public class StrategyPatternApp {
 
 Run the app. The result will be:
 
-````
+```
 Total price (normal strategy): 115
 Total price (half price strategy): 57
 Total price (Monday 10% off price strategy): 103
 ``` 
 
 Of course, the third result will be different if you run this application not on Monday. I'm sure you will like this pattern, as it makes your code more flexible. I suggest you to read an article about this pattern in [Wikipedia](https://en.wikipedia.org/wiki/Strategy_pattern).
-
-````

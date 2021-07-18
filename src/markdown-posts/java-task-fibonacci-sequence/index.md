@@ -10,7 +10,7 @@ tags:
 
 Fibonacci numbers are a number sequence, where first two numbers are 1 and 1 or 0 and 1. Each subsequent number is the sum of previous two numbers. This task is often asked by interviewers (not only in Java). Let's solve it in two ways: using a loop and recursion.
 
-```
+```java
 public int getFibonacci(int number) {
     if (number == 1 || number == 2) {
         return 1;
@@ -34,7 +34,7 @@ To see a recursive solution of this task, click "read more".
 
 The recursive solution looks better, isn't it?
 
-```
+```java
 public int getFebonacciRecursive(int number) {
     if (number == 1 || number == 2) {
         return 1;
@@ -46,7 +46,7 @@ public int getFebonacciRecursive(int number) {
 
 The whole program code with a main method to run:
 
-```
+```java
 package com.imsavva.test;
 
 public class Fibonacci {

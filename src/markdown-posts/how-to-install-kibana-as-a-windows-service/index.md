@@ -8,7 +8,7 @@ image: images/main.png
 
 Installing Elasticsearch as a service is an easy task:
 
-```
+```bash
 cd elasticsearch_dir/bin elasticsearch-service.bat install
 ```
 
@@ -16,7 +16,7 @@ This creates a new service, which should be started manually.
 
 However, I faced a problem installing Kibana 5.5.0 as a Windows service. The first solution I found didn't work.
 
-```
+```bash
 sc create "Kibana 5.5.0" binPath= "path_to_kibana/bin/kibana.bat" depend="elasticsearch-service-x64"
 ```
 

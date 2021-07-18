@@ -18,7 +18,7 @@ Creating our first Hibernate application step by step:
 
 #### Create a table in your database
 
-```
+```sql
 CREATE TABLE employee (
     id BIGINT SIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -35,7 +35,7 @@ Simply run File → New → Project... → Choose "Maven Project", archetype 
 
 My pom.xml dependencies section looks like this (here I put artifacts versions right in dependency entries, but it's a good idea to use `<properties>` section.
 
-```
+```xml
 <dependencies>
     <dependency>
         <groupId>junit</groupId>
@@ -74,7 +74,7 @@ Please notice, that if you use a different database you should use different da
 
 A JPA entity is a usual POJO annotated with JPA annotations. An entity can also be made with XML definition file. This is an entity class (with setters omitted for the sake of shortness).
 
-```
+```java
 @Entity
 @Table(name = "EMPLOYEE")
 public class Employee implements Serializable {
@@ -110,7 +110,7 @@ Let's see the meaning of these annotations:
 
 ##### Configure persistence unit
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
 <persistence version="2.0"
@@ -145,7 +145,7 @@ Here we set that our persistence provider is Hibernate, our only entity class is
 
 We are ready to try to do something with our entity. Here is a simple class with a main method that creates an entity and saves it to the database.
 
-```
+```java
 public class HibernateTestApp {
 
     public static void main(String[] args) {
@@ -170,7 +170,7 @@ public class HibernateTestApp {
 
 The full source code is available on [GitHub](https://github.com/savva-k/HibernateSimpleApp), there's also an Employee DAO interface, implemented using Hibernate:
 
-```
+```java
 void save(Employee employee);
 void update(Employee employee);
 void delete(long id);

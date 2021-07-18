@@ -22,7 +22,7 @@ Java has its own Observer interface and Observable class, but sometimes we don't
 
 Observer interface:
 
-```
+```java
 package com.imsavva.tests.patterns.observer;
 
 public interface Observer {
@@ -32,7 +32,7 @@ public interface Observer {
 
 Observable interface:
 
-```
+```java
 package com.imsavva.tests.patterns.observer;
 
 public interface Observable {
@@ -44,7 +44,7 @@ public interface Observable {
 
 Observer implementation (let it be a ship that sails in the Carribean sea)
 
-```
+```java
 package com.imsavva.tests.patterns.observer;
 
 public class Ship implements Observer {
@@ -73,7 +73,7 @@ public class Ship implements Observer {
 
 And the Observable interface implementation (this is the sea port which sends radio messages to all the ships)
 
-````
+```java
 package com.imsavva.tests.patterns.observer;
 
 import java.util.ArrayList;
@@ -119,8 +119,7 @@ public class SeaPort implements Observable {
 
 And here's the main method that runs a test app:
 
-````
-
+```java
 package com.imsavva.tests.patterns.observer;
 
 public class ObserverPatternApp {
@@ -138,13 +137,11 @@ public class ObserverPatternApp {
 
 
 }
-
 ```
 
 When we run the application, we will see something like this. All the subscribed ships (observers) have received the messages and they're hurrying to help the people. Of course it would be nice if captains negotiated with each other whom to help. But that's another story.
 
 ```
-
 Ship Jenny received a message: Some people need help at point [3, 6]
 Ship Nebuchadnezzar received a message: Some people need help at point [3, 6]
 Ship Jenny received a message: Some people need help at point [2, 7]
@@ -155,8 +152,6 @@ Ship Jenny received a message: Some people need help at point [4, 5]
 Ship Nebuchadnezzar received a message: Some people need help at point [4, 5]
 Ship Jenny received a message: Some people need help at point [4, 1]
 Ship Nebuchadnezzar received a message: Some people need help at point [4, 1]
-
 ```
 
 Using this pattern can lead to the "lapsed listener problem". It's a common source of memory-leaks in OOP. This problem occurs when an observer no longer needs to listen to a message source, and it fails to unsubscribe. Thus, it cannot be garbage collected as the message source instance holds the reference to the observer. This problem can be solved by using WeakReference. And I think I will write about it in one of my next posts.
-```

@@ -8,7 +8,7 @@ tags:
   - "Java"
 ---
 
-```
+```java
 package com.imsavva;
 
 public class Test {
@@ -27,7 +27,7 @@ When we declare a local variable, it must be initialized before use. Class field
 
 The following list represents default field values:
 
-```
+```java
 private byte b;     // 0
 private short s;    // 0
 private int i;      // 0

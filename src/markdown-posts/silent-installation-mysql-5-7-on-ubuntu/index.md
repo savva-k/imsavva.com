@@ -8,7 +8,7 @@ image: "images/main.png"
 
 This week I had to install MySQL 5.7 using a shell script. So maybe it would be helpful for someone else. This script must be run as root.
 
-```
+```bash
 ROOT_PASSWORD="your_root_password"
 
 echo "mysql-apt-config mysql-apt-config/unsupported-platform select abort" | /usr/bin/debconf-set-selections
@@ -34,18 +34,18 @@ If you want to install software automatically, you may be wondering how to know 
 
 Use `debconf-get-selections`! To install it run:
 
-```
+```bash
 sudo apt-get install -y debconf-utils
 ```
 
 To find properties related to MySQL, run:
 
-```
+```bash
 debconf-get-selections | grep mysql
 ```
 
 Then you can set it in your script like this:
 
-```
+```bash
 echo "mysql-community-server mysql-community-server/root-pass password $ROOT_PASSWORD" | /usr/bin/debconf-set-selections
 ```

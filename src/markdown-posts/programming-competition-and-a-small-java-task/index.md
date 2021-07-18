@@ -21,7 +21,7 @@ What is a palindrome? Palindrome is a word or a number, which reads the same bac
 
 See the solution.
 
-```
+```java
 package com.imsavva.tests.palindrome;
 
 public class PalindromeApp {

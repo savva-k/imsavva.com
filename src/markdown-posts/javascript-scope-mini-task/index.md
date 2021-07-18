@@ -10,7 +10,7 @@ image: images/main.png
 
 What we will see in the console?
 
-```
+```javascript
 var obj = {
     heroName: "Gandalf",
     func: function() {

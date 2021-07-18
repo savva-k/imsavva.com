@@ -12,7 +12,7 @@ You might know that using string concatenation in Java is not a good practice as
 
 Let's start with a simple example:
 
-```
+```java
 package com.imsavva;
 
 public class ConcatenationTestApp {
@@ -31,13 +31,13 @@ To see how it works under the hood, let's compile and decompile it. I tried this
 
 Compiling the code:
 
-```
+```bash
 javac src/com/imsavva/ConcatenationTestApp.java
 ```
 
 Decompiling the class:
 
-```
+```bash
 javap -c src/com/imsavva/ConcatenationTestApp
 ```
 
@@ -45,7 +45,7 @@ Continue reading to see what happens next.
 
 We just decompiled our Java class. Let's see what's inside.
 
-```
+```java
 Compiled from "ConcatenationTestApp.java"
 public class com.imsavva.ConcatenationTestApp extends java.lang.Object{
 public com.imsavva.ConcatenationTestApp();
@@ -90,7 +90,7 @@ Ta-da! As we can see in line 13 (3), the compiler used a StringBuilder instance 
 
 But the situation changes when we create a variable outside of a loop and then use concatenation inside it. Consider the following example:
 
-```
+```java
 package com.imsavva;
 
 public class ConcatenationInsideLoopTestApp {
@@ -110,7 +110,7 @@ public class ConcatenationInsideLoopTestApp {
 
 After compiling and decompiling this code as we did for the previous fragment, we got this:
 
-```
+```java
 Compiled from "ConcatenationInsideLoopTestApp.java"
 public class com.imsavva.ConcatenationInsideLoopTestApp extends java.lang.Object{
 public com.imsavva.ConcatenationInsideLoopTestApp();
@@ -181,7 +181,7 @@ StringBuilder is still used, right? But take a look how it is used! As we can se
 
 Let's see a good piece of code:
 
-```
+```java
 package com.imsavva;
 
 public class CorrectConcatenationInsideLoopTestApp {
@@ -201,7 +201,7 @@ public class CorrectConcatenationInsideLoopTestApp {
 
 Here we created an instance of the StringBuilder before the loop. Inside the loop, we invoke its `append` method. Let's decompile this piece of code:
 
-```
+```java
 Compiled from "CorrectConcatenationInsideLoopTestApp.java"
 public class com.imsavva.CorrectConcatenationInsideLoopTestApp extends java.lang.Object{
 public com.imsavva.CorrectConcatenationInsideLoopTestApp();

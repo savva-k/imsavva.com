@@ -21,7 +21,7 @@ I recommend reading the [getting started guide](https://www.elastic.co/guide/en
 
 Elasticsearch requires Java 8, so before installation, we need to check the Java version:
 
-```
+```bash
 java -version
 echo %JAVA_HOME%
 ```
@@ -35,7 +35,7 @@ The installation process is well described in the getting started guide, includi
 
 As you can see, it's pretty easy. But it didn't work for me as I had Java 6 installed and my project was using this. So I needed to set the JAVA_HOME variable to JDK 8 directory path for each session, and I created run.bat file for this purpose
 
-```
+```bash
 @echo off
 set JAVA_HOME=C:\Program Files\Java\jdk1.8.0_131
 cd D:\elk\elasticsearch-5.4.1
@@ -68,7 +68,7 @@ As we haven't created any indices, there will be shown only column names.
 
 3. Creating an index
 
-```
+```bash
 curl -XPUT http://localhost:9200/index-name?pretty
 curl http://localhost:9200/_cat/indices?v
 ```
@@ -79,7 +79,7 @@ Here, **?pretty** means that the answer, which is JSON, would be pretty-printed.
 
 4. Adding some data to the index
 
-```
+```bash
 curl -XPUT http://localhost:9200/index-name/type-name/1?pretty -d "{ \"name\": \"Ivan Ivanov\", \"exception_type\": \"Runtime Exception\", \"message\": \"An exception caught... some text\" }"
 curl http://localhost:9200/index-name/type-name/1?pretty
 ```
@@ -127,7 +127,7 @@ When I started writing a LogListener implementation, I faced a problem with look
 
 Every time a log event is created, out log listener should check whether the given event is an error or not. In case it is an error, it will resolve users' profile, prepare a message object, convert it to JSON and send it to Elasticsearch via HttpQuerySender which is shown below
 
-```
+```java
 // imports are omitted
 
 /**
@@ -178,7 +178,7 @@ public class HttpQuerySender {
 
 I recommend using try-with-resources construction instead of this old construction above.
 
-```
+```properties
 # /com/imsavva/elk/net/HttpQuerySender
 
 $class=com.imsavva.elk.net.HttpQuerySender
@@ -186,7 +186,7 @@ $class=com.imsavva.elk.net.HttpQuerySender
 
 Describing the component.
 
-```
+```java
 public static class ElasticsearchErrorEvent {
 
     private String userId;
@@ -214,7 +214,7 @@ public static class ElasticsearchErrorEvent {
 
 A Java bean to store a message before converting to JSON.
 
-```
+```java
 /**
  * LogListener that handles ErrorLogEvents and pushes them to Elasticsearch via HTTP.
  *
@@ -301,7 +301,7 @@ Here's the LogListener implementation that uses HttpQuerySender to send the erro
 
 Warning! This way of using DateFormat could be dangerous because this class is not thread-safe. You may create a new instance each time the logEvent() method is invoked. As an alternative, consider using one instance per thread as described in [this article](https://imsavva.com/using-one-dateformat-instance-per-thread-with-threadlocal).
 
-```
+```properties
 # /atg/dynamo/service/logging/ElasticsearchLogSenderLogListener
 
 $class=com.imsavva.elk.logging.ElasticsearchLogSenderLogListener requestContainer=/com/imsavva/elk/request/RequestContainer httpQuerySender=/com/imsavva/elk/net/HttpQuerySender elasticsearchUrl=http://localhost:9200/error-tracking/report environments=\
@@ -311,7 +311,7 @@ localhost:7003,\
 
 Configuration for the LogListener implementation.
 
-```
+```properties
 # Global.properties
 
 logListeners+=\

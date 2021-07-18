@@ -8,7 +8,7 @@ tags:
   - "Java"
 ---
 
-```
+```java
 int i = 0;
 
 switch (i) {

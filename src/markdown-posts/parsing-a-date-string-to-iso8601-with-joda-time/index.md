@@ -12,7 +12,7 @@ Recently, I faced a date conversion task: convert a string date "yyyy-MM-ddZ" (i
 
 I used Apache Joda time to convert date. First, add a Maven dependency in pom.xml
 
-```
+```xml
 <!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
 <dependency>
     <groupId>joda-time</groupId>
@@ -23,7 +23,7 @@ I used Apache Joda time to convert date. First, add a Maven dependency in pom.xm
 
 To format a string containing date, I used this code:
 
-```
+```java
 DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-ddZ");
 DateTime dt = format.parseDateTime("1983-09-15+03:00")
 .withZone(DateTimeZone.forOffsetHours(3))

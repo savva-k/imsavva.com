@@ -52,9 +52,11 @@ const Layout = ({ children, source, showNavigation }) => {
   `)
 
   const [isMobileState, setMobileState] = useState(true)
+  const [windowWidth, setWindowWidth] = useState(width)
 
   useEffect(() => {
     setMobileState(isMobile)
+    setWindowWidth(window.screen.width)
   }, [])
 
   return (
@@ -80,7 +82,7 @@ const Layout = ({ children, source, showNavigation }) => {
         </div>
       )}
       {isMobileState && (
-        <div style={containerStyleMobile}>
+        <div style={{ ...containerStyleMobile, maxWidth: `${windowWidth}px` }}>
           <main>
             {showNavigation && (
               <div>

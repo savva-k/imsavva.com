@@ -17,7 +17,7 @@ Here is the code.
 
 Java code
 
-```
+```java
 public class RequestContainer extends GenericService {
 
     ThreadLocal<DynamoHttpServletRequest> requestContainer;
@@ -49,14 +49,14 @@ public class RequestContainer extends GenericService {
 
 ATG properties file
 
-```
+```properties
 # /com/imsavva/atg/misc/RequestContainer
 $class=com.imsavva.atg.misc.RequestContainer
 ```
 
 ### 2. Creating an Insertable Servlet
 
-```
+```java
 package com.imsavva.atg.pipeline;
 
 // imports are omitted
@@ -88,11 +88,11 @@ public class RequestContainerSetterServlet extends InsertableServletImpl {
 
 Notice, that in line 16 we’re removing our request as it is already processed:
 
-```
+```java
 requestContainer.setRequest(null);
 ```
 
-```
+```properties
 # /com/imsavva/atg/pipeline/RequestContainerSetterServlet
 $class=com.imsavva.atg.pipeline.RequestContainerSetterServlet
 
@@ -104,7 +104,7 @@ requestContainer=/com/imsavva/atg/misc/RequestContainer
 
 To start our Initial Servlet with the application, let's add this line to the /atg/dynamo/servlet/Initial component configuration file:
 
-```
+```properties
 initialServices+=/com/imsavva/atg/pipeline/RequestContainerSetterServlet
 ```
 
@@ -112,7 +112,7 @@ initialServices+=/com/imsavva/atg/pipeline/RequestContainerSetterServlet
 
 To test our workaround let's create a new component, inject the request container into it and try to lookup the user's profile.
 
-```
+```java
 public class LookupTestComponent extends GenericService {
     private RequestContainer requestContainer;
 
@@ -134,7 +134,7 @@ public class LookupTestComponent extends GenericService {
 
 Configuration file for the component
 
-```
+```properties
 # /com/imsavva/atg/LookupTestComponent
 $class=com.imsavva.atg.LookupTestComponent
 

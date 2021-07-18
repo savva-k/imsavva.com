@@ -23,7 +23,7 @@ Also, I've prepared an example project, feel free to clone and play around:
 
 Adding fonts is pretty simple. I used an XML config, so I will show how to do that in XML:
 
-```
+```xml
 <?xml version="1.0"?>
 <fop version="1.0">
     <!-- Simple FOP XML config -->
@@ -51,7 +51,7 @@ Adding fonts is pretty simple. I used an XML config, so I will show how to do th
 
 Then we can use the font by setting the font-family attribute:
 
-```
+```xml
 <fo:root font-family="Roboto">
     <someContent>
         This font is regular.
@@ -69,7 +69,7 @@ OTF fonts work fine with FOP.
 
 At some time I realized that all the fonts are placed in a JAR file and other resources like images from external servers are not. To solve this problem I have created a custom ResourceResolver implementation:
 
-```
+```java
 public final class CustomPathResolver implements ResourceResolver {
     private static final String FONTS_FOLDER = "/fonts/";
 
@@ -94,7 +94,7 @@ public final class CustomPathResolver implements ResourceResolver {
 This ResourceResolver checks whether the requested resource is in the "fonts" folder and if so, we are looking for a resource in the classpath.  
 To use this ResourceResolver we should manually specify it during the FopFactoryBuilder creation.
 
-```
+```java
 DefaultConfigurationBuilder cfgBuilder = new DefaultConfigurationBuilder();
 try {
     Configuration config = cfgBuilder.build(PdfGenerator.class.getResourceAsStream(CONFIG_FOP_XML));
@@ -118,7 +118,7 @@ A good solution: [add the server's certificate to your keystore](https://docs.or
 The last solution is to disable checking certificate validity at all. **This is not recommended, as you become vulnerable to man-in-the-middle attacks.**  
 To do this, you should implement a new TrustManager and a HostnameVerifier, initialize an SSLContext and set the HostnameVerifier to the HttpsURLConnection (which is used internally by Apache FOP).
 
-```
+```java
 static {
     TrustManager[] trustAllCerts = new TrustManager[] {new X509TrustManager() {
         public java.security.cert.X509Certificate[] getAcceptedIssuers() {

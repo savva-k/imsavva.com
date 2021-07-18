@@ -10,7 +10,7 @@ tags:
 
 What would be the result of execution of the following code?
 
-```
+```java
 package com.imsavva;
 
 public class Test {

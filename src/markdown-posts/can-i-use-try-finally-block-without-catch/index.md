@@ -10,7 +10,7 @@ tags:
 
 Yes, you can use the try-finally construction. As a use case, we can try to connect to a database and finally we will close the connection:
 
-```
+```java
 Connection connection = null;
 
 try {
@@ -31,7 +31,7 @@ This code looks a bit redundant. But in Java 7 we can use a try-with-resources b
 
 In Java 7 we can use a try-with-resources construction:
 
-```
+```java
 try (Statement stmt = con.createStatement()) {
     ResultSet rs = stmt.executeQuery(query);
 

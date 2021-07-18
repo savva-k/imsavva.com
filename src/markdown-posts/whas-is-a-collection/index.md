@@ -10,7 +10,7 @@ tags:
 
 Collection is an object that groups multiple elements into a single unit. Collections are used to store, retrieve and manipulate data. Live example: several Employee objects can be grouped into a collection:
 
-```
+```java
 List<Employee> employees = new ArrayList<Employee>();
 employees.add(new Employee(“John”));
 employees.add(new Employee(“Mary”));

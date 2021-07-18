@@ -24,7 +24,7 @@ The scheme below shows how Java treats uncaught exceptions.
 
 If a thread has its handler set, this handler is used. If not, the thread's ThreadGroup uncaughtException is invoked. This method does the rest of the actions in the scheme:
 
-```
+```java
 public void uncaughtException(Thread t, Throwable e) {
     if (parent != null) {
         parent.uncaughtException(t, e);
@@ -44,7 +44,7 @@ public void uncaughtException(Thread t, Throwable e) {
 
 Now we can try it by ourselves. Here is an example that shows all three types of exception handling:
 
-```
+```java
 package com.imsavva.uncaughtexceptions;
 
 /**
@@ -67,9 +67,9 @@ public class CustomThreadGroup extends ThreadGroup {
 }
 ```
 
-Custom ThreadGrop class overrides uncaughtException() method.
+Custom ThreadGroup class overrides uncaughtException() method.
 
-```
+```java
 package com.imsavva.uncaughtexceptions;
 
 /**
@@ -101,7 +101,7 @@ public class CustomUncaughtExceptionHandler implements Thread.UncaughtExceptionH
 
 Custom uncaught exception handler also overrides uncaughtException() method. The name field is used to differ handler instances.
 
-```
+```java
 package com.imsavva.uncaughtexceptions;
 
 /**

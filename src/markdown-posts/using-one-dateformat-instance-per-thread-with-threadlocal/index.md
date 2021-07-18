@@ -12,7 +12,7 @@ image: images/main.jpg
 
 Here is a quick tip how to use DateFormat inside a ThreadLocal field. Why do we need that? The reason is the DateFormat class is not thread-safe but creating its instances is an expensive operation. So, this is kind of a workaround that creates only one instance of DateFormat per thread.
 
-```
+```java
 package com.imsavva.test;
 
 import java.text.SimpleDateFormat;
