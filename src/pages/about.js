@@ -1,7 +1,7 @@
 import React from "react"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Header from "../components/pageTitle"
 import meJpg from "../images/me.jpg"
 import tacoPng from "../images/taco.png"
@@ -16,7 +16,7 @@ const photoStyle = {
 
 const About = () => (
   <Layout showNavigation={true}>
-    <SEO title="About me" />
+    <Seo title="About me" />
     <Header header="About me" img={tacoPng} />
     <div>
       <img src={meJpg} alt="My pic" style={isMobile ? {} : photoStyle} />

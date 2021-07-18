@@ -1,4 +1,4 @@
-export default function (str) {
+export default function hashcode(str) {
   var hash = 0,
     i,
     chr

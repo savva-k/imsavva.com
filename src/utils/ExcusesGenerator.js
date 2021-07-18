@@ -3,7 +3,7 @@ const excuses = [
   "the image is currently being shown in a museum",
 ]
 
-export default function () {
+export default function excuseGenerator () {
   const random = Math.floor(Math.random() * excuses.length)
   return excuses[random]
 }

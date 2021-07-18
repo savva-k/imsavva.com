@@ -5,10 +5,8 @@ import { graphql } from "gatsby"
 import NoImage from "../components/noImage"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
-import { defineCustomElements as deckDeckGoHighlightElement } from "@deckdeckgo/highlight-code/dist/loader"
+import Seo from "../components/seo"
 import Tags from "../components/tags"
-deckDeckGoHighlightElement()
 
 const headerStyle = {
   fontFamily: `'Press Start 2P'`,
@@ -28,7 +26,7 @@ const Blog = ({ data: { mdx }, pageContext: { tags }, location }) => {
   const image = mdx.frontmatter.image?.childImageSharp?.fluid
   return (
     <Layout source={location.state?.source} showNavigation={false}>
-      <SEO title={mdx.frontmatter.title} />
+      <Seo title={mdx.frontmatter.title} />
       <div style={imageContainerStyle}>
         {image ? (
           <Img fluid={image} />

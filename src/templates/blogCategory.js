@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import Header from "../components/pageTitle"
 import folderPng from "../images/folder.png"
 import Tags from "../components/tags"
@@ -16,7 +16,7 @@ const CategoryPage = ({
 }) => {
   return (
     <Layout showNavigation={true}>
-      <SEO title={`${category} category`} />
+      <Seo title={`${category} category`} />
       <Header header={category} img={folderPng} />
       <Tags tags={tags} />
       <Pagination

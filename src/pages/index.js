@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import BlogLinks from "../components/blogLinks"
 import Header from "../components/pageTitle"
 import dinoPng from "../images/dinosaur.png"
@@ -11,7 +11,7 @@ const IndexPage = ({ data }) => {
   const posts = data.posts.edges
   return (
     <Layout showNavigation={true}>
-      <SEO title="Home" />
+      <Seo title="Home" />
       <Header header="Latest posts" img={dinoPng} />
       <BlogLinks posts={posts} />
     </Layout>
