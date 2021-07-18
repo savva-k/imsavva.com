@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { StaticQuery, graphql, Link } from "gatsby"
 import { isMobile } from "react-device-detect"
 
@@ -32,12 +32,16 @@ const ulStyle = {
 
 const ulStyleMobile = {
   ...ulStyle,
-  marginBottom: "3em",
+  margin: "0 0 3em 0",
 }
 
 const Navigation = () => {
-  let appliedLinkStyle = isMobile ? linkStyleMobile : linkStyle
-  let appliedUlStyle = isMobile ? ulStyleMobile : ulStyle
+  const [isMobileState, setMobileState] = useState(true)
+  useEffect(() => {
+    setMobileState(isMobile)
+  }, [])
+  let appliedLinkStyle = isMobileState ? linkStyleMobile : linkStyle
+  let appliedUlStyle = isMobileState ? ulStyleMobile : ulStyle
   return (
     <nav>
       <ul style={appliedUlStyle}>
