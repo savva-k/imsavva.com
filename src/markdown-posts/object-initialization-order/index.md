@@ -25,7 +25,7 @@ The initialization order is:
 
 Static and instance initialize blocks execute sequentially.
 
-```
+```java
 public class Test extends Parent {
 
     public static void main(String[] args) {

@@ -15,7 +15,7 @@ The pipeline wouldn't even compile because of Groovy's way of handling slashes. 
 
 Eventually, I made it work this way:
 
-```
+```groovy
 stage('Some stage') {
     steps {
         sh script: $/
@@ -27,13 +27,13 @@ stage('Some stage') {
 
 Having the following default.conf:
 
-```
+```properties
 SOME_VAR=Literally any string value
 ```
 
 The pipeline's step will turn it into:
 
-```
+```properties
 SOME_VAR=SOME_VAL
 ```
 

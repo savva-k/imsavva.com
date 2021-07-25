@@ -14,13 +14,13 @@ Ok, I've found some answers to my questions. Let's see.
 
 Firstly, at the time of writing this article, the Oracle doc said that we need to implement one method:
 
-```
+```java
 int runProcess(Object pParam, PipelineResult pResult)
 ```
 
 But actually **PipelineProcessor interface** has another method to implement, which is:
 
-```
+```java
 int[] getRetCodes()
 ```
 
@@ -34,7 +34,7 @@ The second parameter is used to store the error data for a pipeline execution, a
 
 I also extended my class from ApplicationLoggingImpl to use logging facilities. Here is the full example of the **ATG pipeline processor**:
 
-```
+```java
 package com.imsavva.atg.pipeline;
 
 public class OrderItemsCountPipelineProcessor extends ApplicationLoggingImpl implements PipelineProcessor {
